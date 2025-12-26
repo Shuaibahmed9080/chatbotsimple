@@ -66,9 +66,9 @@ function withLoading(callback) {
 botMsg("Select one of the options below or type your query");
 
 showOptions([
-  { label: "Aadhar Card/ Background Verification", action: networkIssue },
-  { label: "Payroll/Offer letter", action: roamingPack },
-  { label: "DOJ/ Salary", action: billing },
+  { label: "Aadhar Card  /  Background Verification", action: networkIssue },
+  { label: "Payroll  /  Offer letter", action: roamingPack },
+  { label: "DOJ  /  Salary", action: billing },
 //   { label: "NDA/Pre-requisite ", action: plan },
 //   { label: "Manage account / Shift connection", action: account },
 //   { label: "More", action: more }
