@@ -700,7 +700,7 @@ body {
 /* Orientation adjustments for tablets */
 @media (max-height: 600px) and (min-width: 481px) {
   .chat-container {
-    height: 95vh;
+    height: 90vh;
     max-height: 95vh;
   }
   

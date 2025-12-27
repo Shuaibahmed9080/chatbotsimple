@@ -57,7 +57,7 @@ function withLoading(callback) {
   setTimeout(() => {
     removeLoader();
     callback();
-  }, 2000); // ⏳ 4 seconds
+  }, 2000); // ⏳ 2 seconds
 }
 
 /* ===============================
@@ -166,7 +166,19 @@ function internetIssue() {
     showOptions([
       { label: "Why is Aadhaar card required?", action: oneMore },
       { label: "Why is Aadhaar needed during onboarding?",action: onemore2 },
-      { label: "I’m not able to upload my Aadhaar picture. What should I do?", action: fiveGCheck }
+      { label: "I’m not able to upload my Aadhaar picture. What should I do?", action: fiveGCheck },
+      { label: "Why is Aadhaar required?", action: oneMore1 },
+  { label: "What Aadhaar details do I need to enter in the form?", action: oneMore2 },
+  { label: "How do I upload my Aadhaar image?", action: oneMore3 },
+  { label: "What common mistakes should I avoid while uploading Aadhaar?", action: oneMore4 },
+  { label: "What should I do if I face an error while uploading Aadhaar?", action: oneMore5 },
+  { label: "What help tips should I follow to complete the form easily?", action: oneMore6 },
+  { label: "Is my Aadhaar information safe?", action: oneMore7 },
+  { label: "Can I edit my Aadhaar details after submitting the form?", action: oneMore8 },
+  { label: "What happens after I submit my Aadhaar details?", action: oneMore9 },
+  { label: "What should I do if my Aadhaar name does not match my other documents?", action: oneMore10 },
+  { label: "Can I use someone else’s Aadhaar card?", action: oneMore11 },
+  { label: "Who should I contact if I still face issues?", action: oneMore12 }
     ]);
   });
 }
@@ -292,6 +304,163 @@ function onemore2() {
     `);
   });
 }
+function oneMore1() {
+  userMsg("Why is Aadhaar required?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Aadhaar is used to verify your identity</li>
+        <li>It confirms your name, date of birth, and address</li>
+        <li>It helps avoid fake or duplicate records</li>
+      </ul>
+    `);
+  });
+}
+function oneMore2() {
+  userMsg("What Aadhaar details do I need to enter in the form?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Enter your full name exactly as on Aadhaar</li>
+        <li>Enter your Aadhaar number correctly</li>
+        <li>Ensure the date of birth matches the Aadhaar card</li>
+      </ul>
+    `);
+  });
+}
+function oneMore3() {
+  userMsg("How do I upload my Aadhaar image?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Take a clear photo or scan of your Aadhaar card</li>
+        <li>Upload the image in JPG or PNG format</li>
+        <li>Ensure the image size is less than 1MB</li>
+      </ul>
+    `);
+  });
+}
+function oneMore4() {
+  userMsg("What common mistakes should I avoid while uploading Aadhaar?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Do not upload blurry or unclear images</li>
+        <li>Avoid files larger than 1MB</li>
+        <li>Do not upload screenshots or wrong documents</li>
+      </ul>
+    `);
+  });
+}
+function oneMore5() {
+  userMsg("What should I do if I face an error while uploading Aadhaar?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Check your internet connection</li>
+        <li>Refresh the page and try again</li>
+        <li>Resize the image and re-upload</li>
+      </ul>
+    `);
+  });
+}
+function oneMore6() {
+  userMsg("What help tips should I follow to complete the form easily?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Read each field label carefully</li>
+        <li>Double-check all details before submitting</li>
+        <li>Contact support if the issue continues</li>
+      </ul>
+    `);
+  });
+}
+function oneMore7() {
+  userMsg("Is my Aadhaar information safe?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Your Aadhaar details are kept confidential</li>
+        <li>Used only for verification purposes</li>
+        <li>Not shared with unauthorized people</li>
+      </ul>
+    `);
+  });
+}
+function oneMore8() {
+  userMsg("Can I edit my Aadhaar details after submitting the form?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Editing may be allowed before final approval</li>
+        <li>Contact HR or support for corrections</li>
+        <li>Always recheck details before submitting</li>
+      </ul>
+    `);
+  });
+}
+function oneMore9() {
+  userMsg("What happens after I submit my Aadhaar details?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Details are reviewed by the HR team</li>
+        <li>You may be contacted for clarification</li>
+        <li>Onboarding continues after verification</li>
+      </ul>
+    `);
+  });
+}
+function oneMore10() {
+  userMsg("What should I do if my Aadhaar name does not match other documents?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Inform HR immediately about the mismatch</li>
+        <li>Provide supporting documents if asked</li>
+        <li>Avoid submitting incorrect details</li>
+      </ul>
+    `);
+  });
+}
+function oneMore11() {
+  userMsg("Can I use someone else’s Aadhaar card?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Only your own Aadhaar card is allowed</li>
+        <li>Using another person’s Aadhaar is not permitted</li>
+        <li>This may lead to rejection</li>
+      </ul>
+    `);
+  });
+}
+function oneMore12() {
+  userMsg("Who should I contact if I still face issues?");
+
+  withLoading(() => {
+    botMsg(`
+      <ul>
+        <li>Contact the HR or support team</li>
+        <li>Share the error message or screenshot</li>
+        <li>They will help resolve the issue</li>
+      </ul>
+    `);
+  });
+}
+
 
 function fiveGCheck() {
   userMsg("I’m not able to upload my Aadhaar picture. What should I do?");
