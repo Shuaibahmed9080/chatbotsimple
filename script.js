@@ -1,5 +1,8 @@
 const chat = document.getElementById("chatArea");
 const input = document.getElementById("userInput");
+let humanChatEnabled = false;
+const WHATSAPP_NUMBER = "919080887600"; // replace with your number
+
 
 /* ===============================
    Utility functions
@@ -70,17 +73,9 @@ showOptions([
   { label: "Payroll  /  Offer letter", action: roamingPack },
   { label: "DOJ  /  Salary", action: billing },
   { label: "NDA", action: plan },
-//   { label: "Manage account / Shift connection", action: account },
-//   { label: "More", action: more }
+  { label: "Human chat", action: account },
 ]);
-// showOptions([
-//   { label: "Issue with Network / Channels / No Signal", action: networkIssue },
-//   { label: "International roaming pack activation / Support", action: roamingPack },
-//   { label: "Bills / Payment / Recharge query", action: billing },
-//   { label: "Plan or Pack related query", action: plan },
-//   { label: "Manage account / Shift connection", action: account },
-//   { label: "More", action: more }
-// ]);
+
 
 /* ===============================
    Step 1 Handlers
@@ -94,7 +89,7 @@ function networkIssue() {
     showOptions([
       { label: "Aadhar Card", action: internetIssue },
       { label: "Background Verification", action: fiveG },
-    //   { label: "International roaming", action: roaming }
+      //   { label: "International roaming", action: roaming }
     ]);
   });
 }
@@ -107,7 +102,7 @@ function roamingPack() {
     showOptions([
       { label: "Payroll", action: pack },
       { label: "Offer letter", action: pack2 },
-    //   { label: "International roaming", action: roaming }
+      //   { label: "International roaming", action: roaming }
     ]);
 
 
@@ -122,41 +117,33 @@ function billing() {
     showOptions([
       { label: "DOJ", action: pack3 },
       { label: "Salary", action: pack4 },
-    //   { label: "International roaming", action: roaming }
+      //   { label: "International roaming", action: roaming }
     ]);
-})
+  })
 
 }
 
-// function plan() {
-//   userMsg("Plan or Pack related query");
+function account() {
+  userMsg("Human Chat");
 
-//   withLoading(() => {
-//     botMsg("Please choose a plan that suits your usage.");
-//   });
-// }
+  withLoading(() => {
+    humanChatEnabled = true;
 
-// function account() {
-//   userMsg("Manage account / Shift connection");
+    botMsg(`
+      You are now connected to human support.
+      <br/>Please type your message and it will be sent to WhatsApp.
+    `);
+  });
+}
 
-//   withLoading(() => {
-//     botMsg("Account management services are available here.");
-//   });
-// }
 
-// function more() {
-//   userMsg("More");
 
-//   withLoading(() => {
-//     botMsg("Please type your query to continue.");
-//   });
-// }
 
 /* ===============================
    Step 2 Handlers
    =============================== */
 function internetIssue() {
-//   userMsg("Issue with internet/calls");
+  //   userMsg("Issue with internet/calls");
   userMsg("Aadhar card");
 
   withLoading(() => {
@@ -165,20 +152,20 @@ function internetIssue() {
     );
     showOptions([
       { label: "Why is Aadhaar card required?", action: oneMore },
-      { label: "Why is Aadhaar needed during onboarding?",action: onemore2 },
+      { label: "Why is Aadhaar needed during onboarding?", action: onemore2 },
       { label: "I’m not able to upload my Aadhaar picture. What should I do?", action: fiveGCheck },
       { label: "Why is Aadhaar required?", action: oneMore1 },
-  { label: "What Aadhaar details do I need to enter in the form?", action: oneMore2 },
-  { label: "How do I upload my Aadhaar image?", action: oneMore3 },
-  { label: "What common mistakes should I avoid while uploading Aadhaar?", action: oneMore4 },
-  { label: "What should I do if I face an error while uploading Aadhaar?", action: oneMore5 },
-  { label: "What help tips should I follow to complete the form easily?", action: oneMore6 },
-  { label: "Is my Aadhaar information safe?", action: oneMore7 },
-  { label: "Can I edit my Aadhaar details after submitting the form?", action: oneMore8 },
-  { label: "What happens after I submit my Aadhaar details?", action: oneMore9 },
-  { label: "What should I do if my Aadhaar name does not match my other documents?", action: oneMore10 },
-  { label: "Can I use someone else’s Aadhaar card?", action: oneMore11 },
-  { label: "Who should I contact if I still face issues?", action: oneMore12 }
+      { label: "What Aadhaar details do I need to enter in the form?", action: oneMore2 },
+      { label: "How do I upload my Aadhaar image?", action: oneMore3 },
+      { label: "What common mistakes should I avoid while uploading Aadhaar?", action: oneMore4 },
+      { label: "What should I do if I face an error while uploading Aadhaar?", action: oneMore5 },
+      { label: "What help tips should I follow to complete the form easily?", action: oneMore6 },
+      { label: "Is my Aadhaar information safe?", action: oneMore7 },
+      { label: "Can I edit my Aadhaar details after submitting the form?", action: oneMore8 },
+      { label: "What happens after I submit my Aadhaar details?", action: oneMore9 },
+      { label: "What should I do if my Aadhaar name does not match my other documents?", action: oneMore10 },
+      { label: "Can I use someone else’s Aadhaar card?", action: oneMore11 },
+      { label: "Who should I contact if I still face issues?", action: oneMore12 }
     ]);
   });
 }
@@ -193,19 +180,19 @@ function plan() {
   });
   showOptions(
     [
-  { label: "What is an NDA (Non-Disclosure Agreement)?", action: sevenmore1 },
-  { label: "Why is an NDA required?", action: sevenmore2 },
-  { label: "What information is considered confidential?", action: sevenmore3 },
-  { label: "When do I need to sign the NDA?", action: sevenmore4 },
-  { label: "How do I sign the NDA?", action: sevenmore5 },
-  { label: "How long is the NDA valid?", action: sevenmore6 },
-  { label: "Does the NDA apply after leaving the company?", action: sevenmore7 },
-  { label: "What happens if I violate the NDA?", action: sevenmore8 },
-  { label: "Can I share company information with others?", action: sevenmore9 },
-  { label: "Is my information safe after signing the NDA?", action: sevenmore10 },
-  { label: "Can I ask questions before signing the NDA?", action: sevenmore11 },
-  { label: "Who should I contact if I need help with the NDA?", action: sevenmore12 }
-]
+      { label: "What is an NDA (Non-Disclosure Agreement)?", action: sevenmore1 },
+      { label: "Why is an NDA required?", action: sevenmore2 },
+      { label: "What information is considered confidential?", action: sevenmore3 },
+      { label: "When do I need to sign the NDA?", action: sevenmore4 },
+      { label: "How do I sign the NDA?", action: sevenmore5 },
+      { label: "How long is the NDA valid?", action: sevenmore6 },
+      { label: "Does the NDA apply after leaving the company?", action: sevenmore7 },
+      { label: "What happens if I violate the NDA?", action: sevenmore8 },
+      { label: "Can I share company information with others?", action: sevenmore9 },
+      { label: "Is my information safe after signing the NDA?", action: sevenmore10 },
+      { label: "Can I ask questions before signing the NDA?", action: sevenmore11 },
+      { label: "Who should I contact if I need help with the NDA?", action: sevenmore12 }
+    ]
 
   );
 }
@@ -220,20 +207,17 @@ function fiveG() {
 
     showOptions([
       { label: "Why is Background Verification required?", action: twoMore },
-      { label: "What happens if Background Verification fails?", action: twomore2},
+      { label: "What happens if Background Verification fails?", action: twomore2 },
       { label: "What is Background Verification?", action: twoMore1 },
-  // { label: "Why is Background Verification required?", action: twoMore2 },
-  { label: "What details are checked during Background Verification?", action: twoMore3 },
-  { label: "What documents do I need to submit for verification?", action: twoMore4 },
-  { label: "Is my personal information safe during verification?", action: twoMore5 },
-  { label: "How long does Background Verification take?", action: twoMore6 },
-  { label: "What if my documents do not match?", action: twoMore7 },
-  { label: "How will I know the verification status?", action: twoMore8 },
-  { label: "What should I do if I get an error or rejection?", action: twoMore9 },
-  { label: "What help tips should I follow to complete verification easily?", action: twoMore10 },
-  // { label: "Will Background Verification affect my job offer?", action: twoMore11 },
-  // { label: "Who should I contact if I need help?", action: twoMore12 }
-    //   { label: "Check if your handset is 5G ready", action:  }
+      // { label: "Why is Background Verification required?", action: twoMore2 },
+      { label: "What details are checked during Background Verification?", action: twoMore3 },
+      { label: "What documents do I need to submit for verification?", action: twoMore4 },
+      { label: "Is my personal information safe during verification?", action: twoMore5 },
+      { label: "How long does Background Verification take?", action: twoMore6 },
+      { label: "What if my documents do not match?", action: twoMore7 },
+      { label: "How will I know the verification status?", action: twoMore8 },
+      { label: "What should I do if I get an error or rejection?", action: twoMore9 },
+      { label: "What help tips should I follow to complete verification easily?", action: twoMore10 },
     ]);
   });
 }
@@ -249,19 +233,19 @@ function pack() {
     showOptions([
       { label: "Why is Payroll important in a company ?", action: threemore },
       { label: "What information is required for Payroll processing?", action: threemore2 },
-    //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
-    { label: "What is Payroll?", action: threemore1 },
-  // { label: "Why is Payroll important?", action: threemore22 },
-  { label: "How is my salary calculated?", action: threemore3 },
-  { label: "What deductions are taken from my salary?", action: threemore4 },
-  { label: "When will my salary be credited?", action: threemore5 },
-  { label: "How will I receive my salary?", action: threemore6 },
-  { label: "What is a payslip and why is it important?", action: threemore7 },
-  { label: "Where can I check my payslip?", action: threemore8 },
-  { label: "What should I do if my salary is not credited?", action: threemore9 },
-  { label: "What should I do if there is an error in my salary?", action: threemore10 },
-  // { label: "Is my payroll and salary information safe?", action: threemore11 },
-  // { label: "What help tips should I follow to understand payroll easily?", action: threemore12 }
+      //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
+      { label: "What is Payroll?", action: threemore1 },
+      // { label: "Why is Payroll important?", action: threemore22 },
+      { label: "How is my salary calculated?", action: threemore3 },
+      { label: "What deductions are taken from my salary?", action: threemore4 },
+      { label: "When will my salary be credited?", action: threemore5 },
+      { label: "How will I receive my salary?", action: threemore6 },
+      { label: "What is a payslip and why is it important?", action: threemore7 },
+      { label: "Where can I check my payslip?", action: threemore8 },
+      { label: "What should I do if my salary is not credited?", action: threemore9 },
+      { label: "What should I do if there is an error in my salary?", action: threemore10 },
+      // { label: "Is my payroll and salary information safe?", action: threemore11 },
+      // { label: "What help tips should I follow to understand payroll easily?", action: threemore12 }
     ]);
   });
 }
@@ -278,21 +262,16 @@ It confirms the job role, salary details, and date of joining, and outlines the 
       { label: "Why is an Offer Letter important?", action: fourmore },
       { label: "What details are mentioned in an Offer Letter?", action: fourmore2 },
 
-  { label: "What is an Offer Letter?", action: fourmore1 },
-  // { label: "Why is an Offer Letter important?", action: fourmore2 },
-  { label: "What details are mentioned in an Offer Letter?", action: fourmore3 },
-  { label: "How should I read my Offer Letter?", action: fourmore4 },
-  { label: "How do I accept the Offer Letter?", action: fourmore5 },
-  { label: "How do I sign the Offer Letter?", action: fourmore6 },
-  { label: "What documents do I need to submit after accepting the Offer Letter?", action: fourmore7 },
-  { label: "What happens after I accept the Offer Letter?", action: fourmore8 },
-  { label: "Can I ask questions before accepting the Offer Letter?", action: fourmore9 },
-  { label: "What if I do not accept the Offer Letter on time?", action: fourmore10 },
-  // { label: "Is my Offer Letter information safe?", action: fourmore11 },
-  // { label: "Who should I contact if I need help with my Offer Letter?", action: fourmore12 }
-
-
-    //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
+      { label: "What is an Offer Letter?", action: fourmore1 },
+      // { label: "Why is an Offer Letter important?", action: fourmore2 },
+      { label: "What details are mentioned in an Offer Letter?", action: fourmore3 },
+      { label: "How should I read my Offer Letter?", action: fourmore4 },
+      { label: "How do I accept the Offer Letter?", action: fourmore5 },
+      { label: "How do I sign the Offer Letter?", action: fourmore6 },
+      { label: "What documents do I need to submit after accepting the Offer Letter?", action: fourmore7 },
+      { label: "What happens after I accept the Offer Letter?", action: fourmore8 },
+      { label: "Can I ask questions before accepting the Offer Letter?", action: fourmore9 },
+      { label: "What if I do not accept the Offer Letter on time?", action: fourmore10 },
     ]);
   });
 }
@@ -308,19 +287,19 @@ This date is used for salary, attendance, and all employment records.
     showOptions([
       { label: "When is DOJ finalized?", action: fivemore },
       { label: "What happens if DOJ is delayed?", action: fivemore2 },
-       { label: "What is DOJ (Date of Joining)?", action: fivemore1 },
-  { label: "Why is DOJ important?", action: fivemore22 },
-  { label: "How does DOJ affect my salary?", action: fivemore3 },
-  { label: "How does DOJ affect attendance?", action: fivemore4 },
-  { label: "How does DOJ affect onboarding?", action: fivemore5 },
-  { label: "What should I do on my first day (DOJ)?", action: fivemore6 },
-  { label: "What if my DOJ changes?", action: fivemore7 },
-  { label: "What happens if I join late on my DOJ?", action: fivemore8 },
-  { label: "What documents should I carry on DOJ?", action: fivemore9 },
-  { label: "Who should I contact if I have doubts about DOJ?", action: fivemore10 },
-  // { label: "Can my DOJ affect my probation period?", action: fivemore11 },
-  // { label: "What help tips should I follow to avoid DOJ confusion?", action: fivemore12 }
-    //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
+      { label: "What is DOJ (Date of Joining)?", action: fivemore1 },
+      { label: "Why is DOJ important?", action: fivemore22 },
+      { label: "How does DOJ affect my salary?", action: fivemore3 },
+      { label: "How does DOJ affect attendance?", action: fivemore4 },
+      { label: "How does DOJ affect onboarding?", action: fivemore5 },
+      { label: "What should I do on my first day (DOJ)?", action: fivemore6 },
+      { label: "What if my DOJ changes?", action: fivemore7 },
+      { label: "What happens if I join late on my DOJ?", action: fivemore8 },
+      { label: "What documents should I carry on DOJ?", action: fivemore9 },
+      { label: "Who should I contact if I have doubts about DOJ?", action: fivemore10 },
+      // { label: "Can my DOJ affect my probation period?", action: fivemore11 },
+      // { label: "What help tips should I follow to avoid DOJ confusion?", action: fivemore12 }
+      //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
     ]);
   });
 }
@@ -337,18 +316,18 @@ It is usually paid monthly and includes basic pay, allowances, and deductions.
       { label: "Why is Salary important for employees?", action: sixmore },
       { label: "When is Salary credited?", action: sixmore2 },
       { label: "What is Salary?", action: sixmore1 },
-  // { label: "Why is Salary important?", action: sixmore2 },
-  { label: "How is my Salary calculated?", action: sixmore3 },
-  { label: "What is Basic Pay?", action: sixmore4 },
-  { label: "What are Allowances?", action: sixmore5 },
-  { label: "What deductions are taken from Salary?", action: sixmore6 },
-  { label: "What is Net Salary?", action: sixmore7 },
-  { label: "When will my Salary be credited?", action: sixmore8 },
-  { label: "How will I receive my Salary?", action: sixmore9 },
-  { label: "What is a Payslip?", action: sixmore10 },
-  { label: "What should I do if there is a salary issue?", action: sixmore11 },
-  // { label: "What help tips should I follow to understand Salary easily?", action: sixmore12 }
-    //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
+      // { label: "Why is Salary important?", action: sixmore2 },
+      { label: "How is my Salary calculated?", action: sixmore3 },
+      { label: "What is Basic Pay?", action: sixmore4 },
+      { label: "What are Allowances?", action: sixmore5 },
+      { label: "What deductions are taken from Salary?", action: sixmore6 },
+      { label: "What is Net Salary?", action: sixmore7 },
+      { label: "When will my Salary be credited?", action: sixmore8 },
+      { label: "How will I receive my Salary?", action: sixmore9 },
+      { label: "What is a Payslip?", action: sixmore10 },
+      { label: "What should I do if there is a salary issue?", action: sixmore11 },
+      // { label: "What help tips should I follow to understand Salary easily?", action: sixmore12 }
+      //   { label: "Check if your handset is 5G ready", action: fiveGCheck }
     ]);
   });
 }
@@ -369,8 +348,6 @@ function oneMore() {
     `);
   });
 }
-
-
 function onemore2() {
   userMsg("Why is Aadhaar needed during onboarding?");
 
@@ -539,7 +516,7 @@ function oneMore12() {
       </ul>
     `);
   });
-}function twoMore1() {
+} function twoMore1() {
   userMsg("What is Background Verification?");
 
   withLoading(() => {
@@ -1506,31 +1483,54 @@ function sevenmore12() {
   });
 }
 
+//newcode
+function redirectToWhatsApp(message) {
+  const url =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+  botMsg("Sending your message to human support on WhatsApp...");
+
+  setTimeout(() => {
+    // ✅ Force redirect (works on mobile + desktop)
+    window.open(url, "_blank");
+  }, 800);
+}
 
 
 
-/* ===============================
-   Text Input Handling
-   =============================== */
+
 function handleInput() {
-  const text = input.value.trim().toLowerCase();
-  if (!text) return;
+  const originalText = input.value.trim();
+  if (!originalText) return;
 
-  userMsg(input.value);
+  userMsg(originalText);
 
   withLoading(() => {
-    // if (text.includes("aadhar")) networkIssue();
+    const text = originalText.toLowerCase();
+
+    // 🟢 HUMAN CHAT MODE
+    if (humanChatEnabled) {
+      redirectToWhatsApp(originalText);
+      return;
+    }
+
+    // 🟢 NORMAL CHATBOT FLOW
     if (text.includes("aadhar card")) internetIssue();
-    // if (text.includes("network")) networkIssue();
     else if (text.includes("background verification")) fiveG();
     else if (text.includes("payroll")) pack();
     else if (text.includes("offer letter")) pack2();
     else if (text.includes("doj")) pack3();
     else if (text.includes("salary")) pack4();
     else if (text.includes("nda")) plan();
-    // else if (text.includes("roaming")) roaming();
-    else botMsg("Please enter a valid option from the menu.");
+    else {
+      botMsg("Please enter a valid option from the menu.");
+    }
   });
 
   input.value = "";
 }
+
+

@@ -3,20 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chatbot UI</title>
+  <title>HR Support Chatbot</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="chat-container">
-  <!-- <p>Chatbot</p> -->
-  <div id="chatArea" class="chat-area"></div>
-  <div class="input-area">
-    <input id="userInput" type="text" placeholder="Type your query here..." />
-    <button onclick="handleInput()">➤</button>
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <div class="logo">HR Chatbot</div>
+  <!-- <button class="nav-btn" onclick="openChat()">Start Chat</button> -->
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+  <h1>HR Support Chatbot</h1>
+  <p>
+    Get instant help with onboarding, payroll, salary, DOJ, NDA,
+    and employee-related queries.
+  </p>
+  <button class="hero-btn" onclick="openChat()">Start Chat</button>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<!-- <footer class="footer">
+  © 2025 HR Support Chatbot. All rights reserved.
+</footer> -->
+
+<!-- ================= FLOATING CHAT BUTTON ================= -->
+<button class="open-chat-btn" onclick="openChat()">💬</button>
+
+<!-- ================= CHATBOT POPUP ================= -->
+<div class="chat-popup" id="chatPopup">
+
+  <div class="chat-header">
+    <span>HR Chatbot</span>
+    <button onclick="closeChat()">✕</button>
   </div>
+
+  <!-- EXISTING CHATBOT UI -->
+  <div class="chat-container">
+    <div id="chatArea" class="chat-area"></div>
+
+    <div class="input-area">
+      <input id="userInput" type="text" placeholder="Type your query here..." />
+      <button onclick="handleInput()">➤</button>
+    </div>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
+
+<script>
+  function openChat() {
+    document.getElementById("chatPopup").style.display = "flex";
+  }
+
+  function closeChat() {
+    document.getElementById("chatPopup").style.display = "none";
+  }
+</script>
+
 </body>
 </html>

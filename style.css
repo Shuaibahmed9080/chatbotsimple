@@ -1,6 +1,3 @@
-/* style.css */
-
-/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -38,8 +35,162 @@ body {
   animation: fadeIn 0.8s ease-out;
 }
 
-/* Main Chat Container */
+/* Hero Section */
+/* =========================
+   NAVBAR
+   ========================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  padding: 0 32px;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  z-index: 100;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.nav-btn {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg,
+      var(--primary),
+      var(--primary-dark));
+  color: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+.hero {
+  height: 100vh;
+  /* padding-top: 64px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 700;
+}
+
+.hero p {
+  max-width: 640px;
+  font-size: 16px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.hero-btn {
+  margin-top: 12px;
+  padding: 14px 34px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg,
+      var(--primary),
+      var(--primary-dark));
+  color: var(--white);
+  font-size: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer {
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-light);
+  background: var(--secondary);
+  border-top: 1px solid var(--border);
+}
+
+/* Open chat button */
+.open-chat-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Popup container */
+.chat-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 380px;
+  height: 520px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+}
+
+/* Header */
+.chat-header {
+  background: #4f46e5;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Make chatbot fill popup */
 .chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/**/
+this is my .chat-container {
   width: 100%;
   max-width: 480px;
   height: 85vh;
@@ -77,7 +228,8 @@ body {
 }
 
 /* Message Bubbles */
-.bot, .user {
+.bot,
+.user {
   max-width: 80%;
   padding: 16px 20px;
   border-radius: var(--radius);
@@ -250,7 +402,7 @@ body {
 }
 
 .input-area button:hover::before {
-  opacity: 1;
+  opacity: 0.2;
 }
 
 .input-area button:active {
@@ -309,6 +461,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -319,6 +472,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -330,10 +484,12 @@ body {
     opacity: 0;
     transform: translateY(10px) scale(0.95);
   }
+
   70% {
     opacity: 0.8;
     transform: translateY(-2px) scale(1.02);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -345,6 +501,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -352,21 +509,29 @@ body {
 }
 
 @keyframes dots {
-  0%, 20% {
+
+  0%,
+  20% {
     content: "∙  ";
   }
+
   40% {
     content: "∙∙ ";
   }
-  60%, 100% {
+
+  60%,
+  100% {
     content: "∙∙∙";
   }
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.7;
   }
@@ -381,358 +546,302 @@ body {
   body {
     padding: 8px;
   }
-  
+
   .chat-container {
     height: 95vh;
     max-width: 100%;
     border-radius: 20px;
     margin: 0;
   }
-  
+
   .chat-area {
     padding: 16px;
     gap: 14px;
   }
-  
-  .bot, .user {
+
+  .bot,
+  .user {
     max-width: 90%;
     padding: 14px 16px;
     font-size: 14px;
   }
-  
-  .bot::before, .user::after {
-    display: none; /* Hide speech bubbles on very small screens */
+
+  .bot::before,
+  .user::after {
+    display: none;
+    /* Hide speech bubbles on very small screens */
   }
-  
+
   .options button {
     padding: 12px 14px;
     font-size: 13px;
     border-radius: 8px;
   }
-  
+
   .input-area {
     padding: 14px;
     gap: 10px;
   }
-  
+
   .input-area input {
     padding: 14px 16px;
     font-size: 14px;
   }
-  
+
   .input-area button {
     width: 48px;
     height: 48px;
     font-size: 16px;
     min-width: 48px;
   }
-  
+
   .loader {
     padding: 14px 16px;
   }
 }
 
-/* Small Tablet - 481px to 768px */
+/* =================================================
+   MOBILE (up to 480px)
+   ================================================= */
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  .chat-container {
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .chat-area {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .bot,
+  .user {
+    max-width: 90%;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .options button {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .input-area {
+    padding: 12px;
+  }
+
+  .input-area input {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .input-area button {
+    width: 46px;
+    height: 46px;
+    font-size: 16px;
+  }
+
+  /* Popup full screen */
+  .chat-popup {
+    width: 100%;
+    height: 100vh;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+  }
+}
+
+/* =================================================
+   TABLET (481px to 768px)
+   ================================================= */
 @media (min-width: 481px) and (max-width: 768px) {
   body {
-    padding: 15px;
+    padding: 16px;
   }
-  
+
   .chat-container {
     height: 90vh;
     max-width: 100%;
-    border-radius: 22px;
+    border-radius: 20px;
   }
-  
+
   .chat-area {
     padding: 20px;
-    gap: 16px;
   }
-  
-  .bot, .user {
+
+  .bot,
+  .user {
     max-width: 85%;
-    padding: 16px 18px;
+    font-size: 15px;
   }
-  
+
+  .options {
+    gap: 10px;
+  }
+
   .options button {
-    padding: 13px 16px;
+    padding: 14px;
     font-size: 14px;
   }
-  
+
   .input-area {
-    padding: 18px;
+    padding: 16px;
   }
-  
-  .input-area input {
-    padding: 15px 18px;
-  }
-  
+
   .input-area button {
     width: 50px;
     height: 50px;
   }
+
+  .chat-popup {
+    width: 90%;
+    height: 85vh;
+    right: 5%;
+    bottom: 20px;
+    border-radius: 22px;
+  }
 }
 
-/* Large Tablet / Small Laptop - 769px to 1024px */
+/* =================================================
+   SMALL LAPTOP / LARGE TABLET (769px to 1024px)
+   ================================================= */
 @media (min-width: 769px) and (max-width: 1024px) {
   body {
-    padding: 25px;
-    background: linear-gradient(135deg, #f0f4f8 0%, #e6ebf5 100%);
+    padding: 24px;
+    background: linear-gradient(135deg, #f0f4f8, #e6ebf5);
   }
-  
+
   .chat-container {
     height: 88vh;
-    max-width: 650px; /* Slightly wider for tablets */
+    max-width: 680px;
     border-radius: 26px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   }
-  
+
   .chat-area {
-    padding: 28px;
-    gap: 18px;
+    padding: 26px;
   }
-  
-  .bot, .user {
+
+  .bot,
+  .user {
     max-width: 75%;
-    padding: 18px 22px;
     font-size: 16px;
   }
-  
+
   .options {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 12px;
   }
-  
+
   .options button {
-    flex: 1;
     min-width: 45%;
-    padding: 16px 20px;
     font-size: 15px;
   }
-  
+
   .input-area {
-    padding: 22px;
-    gap: 15px;
+    padding: 20px;
   }
-  
-  .input-area input {
-    padding: 18px 22px;
-    font-size: 16px;
-  }
-  
+
   .input-area button {
     width: 56px;
     height: 56px;
-    font-size: 20px;
+  }
+
+  .chat-popup {
+    width: 420px;
+    height: 520px;
+    bottom: 90px;
+    right: 24px;
   }
 }
 
-/* Laptop - 1025px to 1440px */
+/* =================================================
+   LAPTOP (1025px to 1440px)
+   ================================================= */
 @media (min-width: 1025px) and (max-width: 1440px) {
   body {
-    padding: 30px;
-    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    padding: 32px;
+    background: linear-gradient(135deg, #eef2ff, #e0e7ff);
   }
-  
+
   .chat-container {
     height: 85vh;
-    max-width: 800px; /* Wider for laptops */
+    max-width: 800px;
     border-radius: 28px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
-  
-  .chat-container::before {
-    height: 6px;
-  }
-  
+
   .chat-area {
     padding: 32px;
-    gap: 20px;
   }
-  
-  .bot, .user {
+
+  .bot,
+  .user {
     max-width: 70%;
-    padding: 20px 24px;
     font-size: 17px;
-    line-height: 1.6;
   }
-  
-  .options {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-  
+
   .options button {
-    flex: 1;
     min-width: 30%;
-    padding: 18px 22px;
     font-size: 16px;
   }
-  
-  .input-area {
-    padding: 24px;
-    gap: 18px;
-  }
-  
-  .input-area input {
-    padding: 20px 24px;
-    font-size: 17px;
-    border-radius: 60px;
-  }
-  
+
   .input-area button {
     width: 60px;
     height: 60px;
     font-size: 22px;
   }
-  
-  .loader {
-    padding: 20px 24px;
+
+  .chat-popup {
+    width: 440px;
+    height: 540px;
   }
 }
 
-/* Desktop (Large Screens) - 1441px and above */
+/* =================================================
+   DESKTOP (1441px and above)
+   ================================================= */
 @media (min-width: 1441px) {
   body {
     padding: 40px;
-    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
   }
-  
+
   .chat-container {
     height: 80vh;
-    max-width: 900px; /* Maximum width for large desktops */
+    max-width: 900px;
     border-radius: 30px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
   }
-  
-  .chat-container::before {
-    height: 8px;
-  }
-  
+
   .chat-area {
     padding: 36px;
-    gap: 24px;
   }
-  
-  .bot, .user {
+
+  .bot,
+  .user {
     max-width: 65%;
-    padding: 24px 28px;
     font-size: 18px;
-    line-height: 1.7;
   }
-  
-  .bot::before {
-    border-width: 10px;
-    left: -10px;
-  }
-  
-  .user::after {
-    border-width: 10px;
-    right: -10px;
-  }
-  
-  .options {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
+
   .options button {
-    flex: 1;
     min-width: 25%;
-    padding: 20px 24px;
     font-size: 17px;
-    border-radius: 12px;
   }
-  
-  .input-area {
-    padding: 28px;
-    gap: 20px;
-  }
-  
-  .input-area input {
-    padding: 22px 28px;
-    font-size: 18px;
-    border-radius: 70px;
-  }
-  
+
   .input-area button {
     width: 68px;
     height: 68px;
     font-size: 24px;
   }
-  
-  /* Enhanced scrollbar for desktop */
-  .chat-area::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .chat-area::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--primary-light), var(--primary));
-  }
-  
-  .loader {
-    padding: 22px 28px;
-  }
-}
 
-/* Ultra-Wide Screens (Adjustments) */
-@media (min-width: 1921px) {
-  .chat-container {
-    max-width: 1000px;
-  }
-  
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
-  }
-}
-
-/* Orientation adjustments for tablets */
-@media (max-height: 600px) and (min-width: 481px) {
-  .chat-container {
-    height: 90vh;
-    max-height: 95vh;
-  }
-  
-  .chat-area {
-    padding: 16px;
-    gap: 12px;
-  }
-  
-  .bot, .user {
-    padding: 12px 16px;
-    font-size: 14px;
-  }
-  
-  .input-area {
-    padding: 14px;
-  }
-}
-
-/* Print Styles */
-@media print {
-  .chat-container {
-    box-shadow: none;
-    border: 1px solid #ddd;
-    height: auto;
-    max-width: 100%;
-  }
-  
-  .input-area {
-    display: none;
-  }
-  
-  .chat-area {
-    overflow: visible;
+  .chat-popup {
+    width: 460px;
+    height: 560px;
+    right: 40px;
+    bottom: 100px;
   }
 }
