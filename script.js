@@ -1,7 +1,7 @@
 const chat = document.getElementById("chatArea");
 const input = document.getElementById("userInput");
 let humanChatEnabled = false;
-const WHATSAPP_NUMBER = "919080887600"; // replace with your number
+const WHATSAPP_NUMBER = "917667949911"; // replace with your number
 
 
 /* ===============================

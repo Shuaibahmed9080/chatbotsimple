@@ -1,0 +1,107 @@
+📘 HR Chatbot – Installation Manual
+
+This document explains how to install and use the HR Chatbot on any website or webpage using HTML, CSS, and JavaScript only.
+
+No backend. No APIs. No frameworks required.
+
+1️⃣ System Requirements
+
+Any modern web browser (Chrome, Edge, Firefox)
+
+A basic website (HTML page)
+
+Text editor (VS Code / Notepad / Sublime)
+
+2️⃣ Files Required
+
+Create the following files:
+
+index.html
+style.css
+script.js
+
+
+⚠️ File names can be changed, but references must match.
+
+3️⃣ Installation Steps
+Step 1: Add HTML Markup
+
+Open your webpage (index.html or existing page) and paste the chatbot HTML before the closing </body> tag.
+
+<!-- Floating Chat Button -->
+<button class="open-chat-btn" onclick="openChat()">💬</button>
+
+<!-- Chatbot Popup -->
+<div class="chat-popup" id="chatPopup">
+
+  <div class="chat-header">
+    <span>HR Support</span>
+    <button onclick="closeChat()">✕</button>
+  </div>
+
+  <div class="chat-container">
+    <div id="chatArea" class="chat-area"></div>
+
+    <div class="input-area">
+      <input id="userInput" type="text" placeholder="Type your query here..." />
+      <button onclick="handleInput()">➤</button>
+    </div>
+  </div>
+
+</div>
+
+Step 2: Link CSS File
+
+Inside the <head> section of your HTML file, add:
+
+<link rel="stylesheet" href="style.css">
+
+
+Paste your full chatbot CSS into style.css.
+
+Step 3: Link JavaScript File
+
+Before </body>, add:
+
+<script src="script.js"></script>
+
+
+Paste your chatbot logic into script.js.
+
+Step 4: Add Popup Control Script
+
+Add this script below the JS file reference:
+
+<script>
+  function openChat() {
+    document.getElementById("chatPopup").style.display = "flex";
+  }
+
+  function closeChat() {
+    document.getElementById("chatPopup").style.display = "none";
+  }
+</script>
+
+4️⃣ Verification Steps
+
+Open the webpage in a browser
+
+Click the 💬 floating button
+
+Chatbot popup should open
+
+Select options or type a message
+
+Chat responses should appear
+
+✔ Installation successful
+
+5️⃣ Adding to an Existing Website
+
+To add chatbot to any existing page:
+
+Copy chatbot HTML into the page
+
+Add style.css link
+
+Add script.js reference
