@@ -1,0 +1,174 @@
+import express from "express";
+import cors from "cors";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const app = express();
+const PORT = 3000;
+
+/* ===============================
+   PATH SETUP
+================================ */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const DATA_PATH = path.join(__dirname, "data", "chatbot-data.json");
+
+/* ===============================
+   MIDDLEWARE
+================================ */
+app.use(cors());
+app.use(express.json());
+app.use(express.static("public"));        // Chatbot UI
+app.use("/admin", express.static("admin"));// Admin Panel
+
+/* ===============================
+   HELPER FUNCTIONS
+================================ */
+function readData() {
+  if (!fs.existsSync(DATA_PATH)) {
+    return { categories: [] };
+  }
+  const raw = fs.readFileSync(DATA_PATH, "utf-8");
+  return JSON.parse(raw);
+}
+
+function writeData(data) {
+  fs.writeFileSync(DATA_PATH, JSON.stringify(data, null, 2));
+}
+
+/* ===============================
+   API ROUTES
+================================ */
+
+/* 🔹 GET CHATBOT DATA */
+app.get("/api/chatbot", (req, res) => {
+  res.json(readData());
+});
+
+/* 🔹 ADD CATEGORY */
+app.post("/api/category", (req, res) => {
+  const { name } = req.body;
+  const data = readData();
+
+  data.categories.push({
+    id: Date.now().toString(),
+    name,
+    questions: []
+  });
+
+  writeData(data);
+  res.json({ message: "Category added successfully" });
+});
+
+/* 🔹 UPDATE CATEGORY */
+app.put("/api/category/:id", (req, res) => {
+  const { name } = req.body;
+  const data = readData();
+
+  const category = data.categories.find(c => c.id === req.params.id);
+  if (!category) {
+    return res.status(404).json({ message: "Category not found" });
+  }
+
+  category.name = name;
+  writeData(data);
+
+  res.json({ message: "Category updated successfully" });
+});
+
+/* 🔹 DELETE CATEGORY */
+app.delete("/api/category/:id", (req, res) => {
+  const data = readData();
+  data.categories = data.categories.filter(
+    c => c.id !== req.params.id
+  );
+
+  writeData(data);
+  res.json({ message: "Category deleted successfully" });
+});
+
+/* 🔹 ADD QUESTION (MATCH BY CATEGORY NAME) */
+app.post("/api/question", (req, res) => {
+  const { categoryId, question, answer } = req.body;
+  const data = readData();
+
+  // ✅ Match by category NAME (case-insensitive)
+  const category = data.categories.find(
+    c => c.name.toLowerCase() === categoryId.toLowerCase()
+  );
+
+  if (!category) {
+    return res.status(404).json({
+      message: "Category not found. Please enter correct category name."
+    });
+  }
+
+  category.questions.push({
+    id: Date.now().toString(),
+    question,
+    answer
+  });
+
+  writeData(data);
+  res.json({ message: "Question added successfully" });
+});
+
+
+/* 🔹 UPDATE QUESTION */
+app.put("/api/question/:categoryId/:questionId", (req, res) => {
+  const { question, answer } = req.body;
+  const data = readData();
+
+  const category = data.categories.find(
+    c => c.id === req.params.categoryId
+  );
+
+  if (!category) {
+    return res.status(404).json({ message: "Category not found" });
+  }
+
+  const q = category.questions.find(
+    q => q.id === req.params.questionId
+  );
+
+  if (!q) {
+    return res.status(404).json({ message: "Question not found" });
+  }
+
+  q.question = question;
+  q.answer = answer;
+
+  writeData(data);
+  res.json({ message: "Question updated successfully" });
+});
+
+/* 🔹 DELETE QUESTION */
+app.delete("/api/question/:categoryId/:questionId", (req, res) => {
+  const data = readData();
+
+  const category = data.categories.find(
+    c => c.id === req.params.categoryId
+  );
+
+  if (!category) {
+    return res.status(404).json({ message: "Category not found" });
+  }
+
+  category.questions = category.questions.filter(
+    q => q.id !== req.params.questionId
+  );
+
+  writeData(data);
+  res.json({ message: "Question deleted successfully" });
+});
+
+/* ===============================
+   START SERVER
+================================ */
+app.listen(PORT, () => {
+  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`✅ Chatbot UI: http://localhost:${PORT}`);
+  console.log(`✅ Admin Panel: http://localhost:${PORT}/admin/admin.html`);
+});

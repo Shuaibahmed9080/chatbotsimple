@@ -1,0 +1,41 @@
+{
+  "categories": [
+    {
+      "id": "nda",
+      "name": "NDA",
+      "questions": [
+        {
+          "id": "nda1",
+          "question": "What is an NDA?",
+          "answer": "An NDA is a Non-Disclosure Agreement that protects confidential company information."
+        },
+        {
+          "id": "1767548781909",
+          "question": "Why NDA is important?",
+          "answer": "It protects company secrets."
+        }
+      ]
+    },
+    {
+      "id": "1767548623096",
+      "name": "Payroll",
+      "questions": []
+    },
+    {
+      "id": "1767681551082",
+      "name": "salary",
+      "questions": []
+    },
+    {
+      "id": "1767682766757",
+      "name": "offer",
+      "questions": [
+        {
+          "id": "1767682778954",
+          "question": "what is offer",
+          "answer": "nothing"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel | HR Chatbot</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<div class="login-container" id="loginBox">
+  <h2>Admin Login</h2>
+
+  <input type="text" id="username" placeholder="Enter Username" />
+  <input type="password" id="password" placeholder="Enter Password" />
+
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- ================= ADMIN PANEL ================= -->
+<div class="admin-container" id="adminPanel" style="display:none">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <h3>HR Chatbot</h3>
+    <ul>
+      <li onclick="showSection('dashboard')">📊 Dashboard</li>
+      <li onclick="showSection('addCategory')">➕ Add Category</li>
+      <li onclick="showSection('addQA')">❓ Add Q & A</li>
+      <li onclick="showSection('manageData')">🗂 Manage Data</li>
+      <li onclick="logout()">🚪 Logout</li>
+    </ul>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="content">
+
+    <!-- ===== DASHBOARD ===== -->
+    <section id="dashboard" class="section active">
+      <h2>Dashboard</h2>
+
+      <p>
+        Welcome to the <strong>HR Chatbot Admin Panel</strong>.  
+        Manage chatbot content dynamically without using a database.
+      </p>
+
+      <ul>
+        <li>✔ Create & edit chatbot categories</li>
+        <li>✔ Add, update & delete questions</li>
+        <li>✔ Manage everything from one panel</li>
+        <li>✔ JSON file–based storage</li>
+      </ul>
+    </section>
+
+    <!-- ===== ADD CATEGORY ===== -->
+    <section id="addCategory" class="section">
+      <h2>Add Category</h2>
+
+      <label>Category Name</label>
+      <input
+        type="text"
+        id="categoryName"
+        placeholder="Example: Payroll, NDA, Salary"
+      />
+
+      <button onclick="addCategory()">Add Category</button>
+    </section>
+
+    <!-- ===== ADD QUESTION & ANSWER ===== -->
+    <section id="addQA" class="section">
+      <h2>Add Question & Answer</h2>
+
+      <label>Category ID</label>
+      <input
+        type="text"
+        id="qaCategory"
+        placeholder="Paste Category ID from Manage Data"
+      />
+
+      <label>Question</label>
+      <input
+        type="text"
+        id="qaQuestion"
+        placeholder="Enter question"
+      />
+
+      <label>Answer</label>
+      <textarea
+        id="qaAnswer"
+        placeholder="Enter answer"
+      ></textarea>
+
+      <button onclick="addQA()">Add Q & A</button>
+    </section>
+
+    <!-- ===== MANAGE DATA ===== -->
+    <section id="manageData" class="section">
+      <h2>Manage Categories & Questions</h2>
+
+      <p>
+        View, edit, or delete chatbot categories and questions below.
+      </p>
+
+      <button onclick="loadAllData()">🔄 Refresh Data</button>
+
+      <div id="dataContainer" style="margin-top:20px;">
+        <!-- Rendered dynamically from admin.js -->
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
